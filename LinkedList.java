@@ -11,7 +11,7 @@ public class LinkedList {
         }
     }
 
-    public void add(Barang barang) {
+    public void tambah(Barang barang) {
         Node newNode = new Node(barang);
         if (head == null) {
             head = newNode;
@@ -24,7 +24,7 @@ public class LinkedList {
         }
     }
 
-    public void remove(String id) {
+    public void hapus(String id) {
         if (head == null) {
             return;
         }
@@ -38,6 +38,28 @@ public class LinkedList {
                 current.next = current.next.next;
                 return;
             }
+            current = current.next;
+        }
+    }
+    public void terima(Barang barang) {
+        Node current = head;
+        while (current != null) {
+            if (current.data.id.equals(barang.id)) {
+                current.data.jumlah_stok += barang.jumlah_stok;
+                return;
+            }
+            current = current.next;
+        }
+        tambah(barang);
+    }
+
+    public void tampilkan() {
+        Node current = head;
+        while (current != null) {
+            System.out.println("ID: " + current.data.id + ", Nama: " + current.data.nama + 
+                               ", Kategori: " + current.data.kategori + 
+                               ", Jumlah Stok: " + current.data.jumlah_stok + 
+                               ", Harga Satuan: " + current.data.harga_satuan);
             current = current.next;
         }
     }
